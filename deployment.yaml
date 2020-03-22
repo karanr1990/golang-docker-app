@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-docker-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: golang-docker-app
+  template:
+    metadata:
+      labels:
+        app: golang-docker-app
+    spec:
+      containers:
+        - name: golang-docker-app-container
+          image: karanr15/golang-docker-app
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 4000
